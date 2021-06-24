@@ -12,25 +12,27 @@ const Search = ()=>{
     const store = useSelector(state=>state)
     const dispatch = useDispatch()
     
-    
     const url = 'https://api.github.com/search/repositories'
     const zapros = async()=>{
+        
+        const searchTypeInput = document.getElementsByClassName('search_type_input')[0]
+        const searchLanguageInput = document.getElementsByClassName('search_language_input')[0]
+        const searchTypeSearchInput = document.getElementsByClassName('search_typeSearch_input')[0]
+
         const zap = await axios.get(url, {
         
           params: {
-            language: 'PHP',
-            type: 'Repositories',
-            q: 'cms',
+            
+            type: searchTypeInput.value,
+            q: searchTypeSearchInput.value + '+language:' + searchLanguageInput.value,
           }
         });
-        
         return zap;
       }
 
       
     
       const addToList = (button)=>{
-        
         const infoDiv=  button.parentElement.parentElement.childNodes[1]
         const info = {
           id: button.id,
@@ -39,18 +41,27 @@ const Search = ()=>{
           language: infoDiv.childNodes[2].innerHTML,
         }
 
+        for(let i = 0; i< store.length; i += 1){
+          if (info.id === store[i].id){
+            dispatch({ type: 'DEL_REP', payload: i})
+            if(button.type === 'button'){
+              button.value = 'ADD TO LIST';
+              button.style.backgroundColor = '#0366D6';
+              button.style.width = '129px';
+            }
+            return 0;
+          }
+        }
+
         dispatch({
           type: 'ADD_REP',
           payload: info
         })
 
-        console.log(store)
-
         if (button.type === 'button') {
           button.value = 'REMOVE FROM LIST';
           button.style.backgroundColor = '#EB5757';
           button.style.width = '181px';
-          button.style.height = '36px';
         }
       }
 
@@ -68,7 +79,7 @@ const Search = ()=>{
                     </div>
                     <div className = "search_language">
                     <select className = "search_language_input" placeholder = "Language">
-                    <option>Language</option>
+                        <option>Language</option>
                         <option>JavaScript</option>
                         <option>css</option>
                         <option>html</option>
@@ -115,8 +126,18 @@ const Search = ()=>{
                     </div>
                     </div>
                 })}
+
+                {result.data.items.length === 0 &&
+                  <div className = "notFound">
+                    <h1 className = "notFound_h">NO RESULTS FOUND</h1>
+                    <p className = "notFound_p">select other parameters and try again</p>
+
+                  </div>
+                }
                 </div>
                 }
+
+                
 
             </div>
     

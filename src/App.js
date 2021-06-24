@@ -6,17 +6,11 @@ import MyList from "./components/my_list"
 import {Route, BrowserRouter, Switch} from "react-router-dom"
 import { connect} from 'react-redux'
 import { render } from "@testing-library/react"
+import { useHistory } from "react-router-dom";
 
 
-
-
-
-
-class App extends Component {
-
+const App = ()=>  {
   
-  render() {
-    console.log(this.props.testStore)
   return (
 
     <BrowserRouter>
@@ -27,11 +21,9 @@ class App extends Component {
       </div>
     </BrowserRouter>
 
-
-    
   );
 }
-}
+
 export default connect(
   state => ({
     testStore: state

@@ -1,6 +1,10 @@
 import React from 'react'
+import { useDispatch, useSelector } from "react-redux";
 
 const View = ()=>{
+
+    const store = useSelector(state=>state)
+    const dispatch = useDispatch()
 
     const changeView = (id)=>{
         const largeBtn = document.getElementById('largeBtn')
@@ -18,8 +22,8 @@ const View = ()=>{
         const contentRepositoriText = document.getElementsByClassName('content_repositori_text')
         const contentRepositoriContentCheckbox = document.getElementsByClassName('content_repositori_content_checkbox')
         const contentRepositoriContentInput = document.getElementsByClassName('content_repositori_content_input');
-        console.log(contentRepositori)
-        if (id === 'barsBtn') {
+        
+        if (id === 'barsBtn' && contentRepositori.length!==0) {
           content.style.width = '950px';
           for(let i=0; i<contentRepositori.length; i+=1) {
             contentRepositori[i].style.width = '100%';
@@ -47,17 +51,25 @@ const View = ()=>{
             contentRepositoriContentCheckbox[i].style.backgroundColor = '#0366D6';
             contentRepositoriContentCheckbox[i].style.boxShadow = 'none';
             contentRepositoriContentCheckbox[i].style.border = 'none';
-            contentRepositoriContentCheckbox[i].style.width = 'auto';
-            contentRepositoriContentCheckbox[i].style.height = 'auto';
+            contentRepositoriContentCheckbox[i].style.width = '20px';
+            contentRepositoriContentCheckbox[i].style.height = '20px';
             contentRepositoriContentCheckbox[i].style.color = 'white';
             contentRepositoriContentInput[i].style.display = 'flex';
             contentRepositoriContentInput[i].style.alignItems = 'flex-start';
             contentRepositoriContentInput[i].style.margin = '0 auto';
             contentRepositoriContentInput[i].style.marginTop = '0px';
             
+            for(let j=0; j<store.length; j+=1){
+              
+              if(contentRepositoriContentCheckbox[i].id === store[j].id){
+                contentRepositoriContentCheckbox[i].checked = true
+              }
+              
+              
+            }
           }
         }
-        else {
+        else if( contentRepositori.length!==0){
           content.style.width = '900px';
           for(let i=0; i<contentRepositori.length; i+=1) {
             contentRepositori[i].style.width = '410px';
@@ -91,9 +103,23 @@ const View = ()=>{
             contentRepositoriContentInput[i].style.alignItems = 'center';
             contentRepositoriContentInput[i].style.margin = '0 auto';
             contentRepositoriContentInput[i].style.marginTop = '50px';
-            
+            for(let j=0; j<store.length; j+=1){
+              if(contentRepositoriContentCheckbox[i].id === store[j].id){
+                contentRepositoriContentCheckbox[i].value = 'REMOVE FROM LIST';
+                contentRepositoriContentCheckbox[i].style.backgroundColor = '#EB5757';
+                contentRepositoriContentCheckbox[i].style.width = '181px';
+                contentRepositoriContentCheckbox[i].checked = false
+              }
+            }
           }
-          
+          if(document.URL === 'http://localhost:3000/my-list'){
+            for(let i=0; i<contentRepositori.length; i+=1) {
+              contentRepositoriContentCheckbox[i].value = 'REMOVE FROM LIST';
+              contentRepositoriContentCheckbox[i].style.backgroundColor = '#EB5757';
+              contentRepositoriContentCheckbox[i].style.width = '181px';
+              
+            }
+          }
         }
       }
 

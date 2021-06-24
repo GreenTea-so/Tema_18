@@ -210,12 +210,21 @@ input{
 }
 
 .content_repositori_text_language{
+    display: inline-block;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
     line-height: 14px;
     margin: 0px;
+    width: auto;
+    height: auto;
+    background-color: #F1F8FE;
+    padding-top: 7px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 7px;
+    border-radius: 15px;
 }
 
 
@@ -253,4 +262,46 @@ input{
     font-size: 18px;
     line-height: 21px;
     
+}
+
+
+.notFound{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 130px;
+}
+
+.notFound_h{
+    margin: 0px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 42px;
+    text-align: center;
+
+    color: #0366D6;
+}
+
+.notFound_p{
+    font-size: 26px;
+    margin-top: 10px;
+}
+
+
+.myList_text{
+    width: 950px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+
+.content_repositori_content_checkbox{
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    border: 5px soli red;
 }

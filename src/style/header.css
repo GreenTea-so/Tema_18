@@ -1,0 +1,110 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3C4146;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+}
+
+.nav_logo{
+    display: flex;
+    margin-left: 30px;
+}
+
+.fa-github{
+    position: absolute;
+    font-size: 35px;
+    background-color: white;
+    top: 20px;
+    left: 45px;
+}
+
+.fa-search{
+    position: relative;
+    font-size: 60px;
+    color: white;
+}
+
+
+.nav_logo_text{
+    margin-left: 12px;
+}
+
+.nav_logo_text_git{
+    color: white;
+    margin: 0px;
+    padding: 0px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    margin-top: 5px;
+}
+
+.nav_logo_text_search{
+    color: #B3BCC7;
+    margin: 0px;
+    padding: 0px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.nav_menu{
+    margin-right: 30px;
+}
+
+.nav_menu_search{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    background-color: #3C4146;
+    border: none;
+    color: white;
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+.nav_menu_search_active{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    background-color: #3C4146;
+    border: none;
+    color: #E0E0E0;
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+.nav_menu_mylist{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    background-color: #3C4146;
+    border: none;
+    color: white;
+    text-decoration: none;
+}
+
+.nav_menu_mylist_active{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    background-color: #3C4146;
+    border: none;
+    color: #E0E0E0;
+    text-decoration: none;
+}

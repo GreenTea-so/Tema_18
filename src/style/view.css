@@ -1,0 +1,28 @@
+.view{
+    display: flex;
+    justify-content: flex-end;
+    width: 950px;
+    margin: 0 auto;
+    margin-top: 32px;
+}
+
+.fa-bars{
+    font-size: 32px;
+    background-color: white;
+    border: none;
+}
+
+.fa_bars{
+    color: #E0E0E0;
+}
+
+.fa-th-large{
+    font-size: 32px;
+    background-color: white;
+    border: none;
+    
+}
+
+.fa_th_large{
+    color: #E0E0E0;
+}

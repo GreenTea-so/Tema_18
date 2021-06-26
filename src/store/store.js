@@ -1,17 +1,21 @@
-const store = {
-    _state: {
-        list: []
-    },
+import { createStore } from 'redux';
 
-    getState(){
-        return this._state
-    },
+function repList(state = { search: [], list: [] }, action) {
+  const newState = state;
+  if (action.type === 'ADD_REP') {
+    newState.list.push(action.payload);
+  }
+  if (action.type === 'DEL_REP') {
+    newState.list.splice(action.payload, 1);
+  }
+  if (action.type === 'SEARCH') {
+    newState.search = action.payload;
+    console.log(newState.search);
+  }
 
-    addList(obj){
-        this._state.list.push(obj)
-    }
+  return newState;
 }
 
-export default store
+const store = createStore(repList);
 
-window.store = store
+export default store;

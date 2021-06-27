@@ -25,7 +25,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start_lint": "cd node_modules/.bin && eslint ../../src/components/header.jsx --fix "
+    "start_lint": "cd node_modules/.bin && eslint ../../src/App.jsx --fix "
   },
   "eslintConfig": {
     "extends": [

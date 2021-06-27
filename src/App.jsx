@@ -8,7 +8,6 @@ import Search from './components/search';
 import MyList from './components/my_list';
 
 const App = () => (
-
   <BrowserRouter>
     <div className="App">
       <Header />
@@ -16,7 +15,6 @@ const App = () => (
       <Route path="/my-list" component={MyList} />
     </div>
   </BrowserRouter>
-
 );
 
 export default connect(

@@ -9,7 +9,6 @@ const MyList = (props) => {
 
   const addToList = (key) => {
     const object = key;
-
     for (let i = 0; i < store.testStore.list.length; i += 1) {
       if (store.testStore.list[i].id === key.id) {
         store.dispatch({
@@ -20,21 +19,17 @@ const MyList = (props) => {
         return 0;
       }
     }
-
     store.dispatch({
       type: 'ADD_REP',
       payload: object,
     });
-    console.log(store.testStore);
     setTest(!test);
     return 0;
   };
 
   return (
-
     <div>
       <h1 className="myList_text">My List</h1>
-
       <div className="view">
         <button type="button" aria-label="Mute volume" id="largeBtn" className={view ? 'fas fa-th-large' : 'fas fa-th-large fa_th_large'} onClick={() => setView(false)} />
         <button type="button" aria-label="Mute volume" id="barsBtn" className={view ? 'fas fa-bars fa_bars' : 'fas fa-bars'} onClick={() => setView(true)} />
@@ -45,11 +40,9 @@ const MyList = (props) => {
           let classButton = 'content_repositori_content_checkbox_view';
           for (let i = 0; i < store.testStore.list.length; i += 1) {
             if (Number(store.testStore.list[i].id) === Number(key.id)) {
-              console.log('========================================');
               classButton = 'content_repositori_content_checkbox_view_remove';
             }
           }
-
           return (
             <div className={view ? 'content_repositori' : 'content_repositori_view'}>
               <div className={view ? 'content_repositori_content' : 'content_repositori_content_view'}>

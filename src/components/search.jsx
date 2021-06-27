@@ -9,7 +9,6 @@ const Search = (props) => {
   const [searchTypeSearchInput, setSearchTypeSearchInput] = useState('');
   const [searchLanguageInput, setSearchLanguageInput] = useState('');
   const [searchTypeInput, setSearchTypeInput] = useState('');
-
   const [tr, setTr] = useState(false);
   const [test, setTest] = useState(false);
   const [view, setView] = useState(true);
@@ -22,14 +21,12 @@ const Search = (props) => {
         q: `${searchTypeSearchInput}+language:${searchLanguageInput}`,
       },
     });
-
     store.dispatch({ type: 'SEARCH', payload: zap.data.items });
     return zap;
   };
 
   const addToList = (key) => {
     const object = key;
-
     for (let i = 0; i < store.testStore.list.length; i += 1) {
       if (store.testStore.list[i].id === key.id) {
         store.dispatch({
@@ -40,7 +37,6 @@ const Search = (props) => {
         return 0;
       }
     }
-
     store.dispatch({
       type: 'ADD_REP',
       payload: object,
@@ -134,17 +130,14 @@ const Search = (props) => {
           );
         })}
 
-        {tr && store.testStore.search.length === 0
-                  && (
-                  <div className="notFound">
-                    <h1 className="notFound_h">NO RESULTS FOUND</h1>
-                    <p className="notFound_p">select other parameters and try again</p>
-
-                  </div>
-                  )}
+        {tr && store.testStore.search.length === 0 && (
+          <div className="notFound">
+            <h1 className="notFound_h">NO RESULTS FOUND</h1>
+            <p className="notFound_p">select other parameters and try again</p>
+          </div>
+        )}
       </div>
     </div>
-
   );
 };
 

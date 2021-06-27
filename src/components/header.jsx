@@ -25,7 +25,6 @@ const Header = () => {
           <Link to="/my-list" className={url === 'http://localhost:3000/my-list' ? 'nav_menu_mylist_active' : 'nav_menu_mylist'} onClick={() => setUrl('http://localhost:3000/my-list')}>My list</Link>
         </div>
       </nav>
-
     </div>
   );
 };

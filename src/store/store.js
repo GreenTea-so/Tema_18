@@ -10,7 +10,6 @@ function repList(state = { search: [], list: [] }, action) {
   }
   if (action.type === 'SEARCH') {
     newState.search = action.payload;
-    console.log(newState.search);
   }
 
   return newState;

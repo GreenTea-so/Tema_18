@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import '../style/search.css';
 
 const Search = (props) => {
-  const store = props;
+  const { testStore } = props;
+  const { dispatch } = props;
 
   const [searchTypeSearchInput, setSearchTypeSearchInput] = useState('');
   const [searchLanguageInput, setSearchLanguageInput] = useState('');
@@ -21,15 +22,15 @@ const Search = (props) => {
         q: `${searchTypeSearchInput}+language:${searchLanguageInput}`,
       },
     });
-    store.dispatch({ type: 'SEARCH', payload: zap.data.items });
+    dispatch({ type: 'SEARCH', payload: zap.data.items });
     return zap;
   };
 
   const addToList = (key) => {
     const object = key;
-    for (let i = 0; i < store.testStore.list.length; i += 1) {
-      if (store.testStore.list[i].id === key.id) {
-        store.dispatch({
+    for (let i = 0; i < testStore.list.length; i += 1) {
+      if (testStore.list[i].id === key.id) {
+        dispatch({
           type: 'DEL_REP',
           payload: i,
         });
@@ -37,12 +38,22 @@ const Search = (props) => {
         return 0;
       }
     }
-    store.dispatch({
+    dispatch({
       type: 'ADD_REP',
       payload: object,
     });
     setTest(!test);
     return 0;
+  };
+
+  const checkList = (key) => {
+    let classButton = 'content_repositori_content_checkbox_view';
+    for (let i = 0; i < testStore.list.length; i += 1) {
+      if (Number(testStore.list[i].id) === Number(key.id)) {
+        classButton = 'content_repositori_content_checkbox_view_remove';
+      }
+    }
+    return classButton;
   };
 
   return (
@@ -92,14 +103,8 @@ const Search = (props) => {
       </div>
 
       <div className={view ? 'content' : 'content_view'}>
-        {store.testStore.search.map((key) => {
-          let classButton = 'content_repositori_content_checkbox_view';
-          for (let i = 0; i < store.testStore.list.length; i += 1) {
-            if (Number(store.testStore.list[i].id) === Number(key.id)) {
-              classButton = 'content_repositori_content_checkbox_view_remove';
-            }
-          }
-
+        {testStore.search.map((key) => {
+          const classButton = checkList(key);
           return (
             <div className={view ? 'content_repositori' : 'content_repositori_view'}>
               <div className={view ? 'content_repositori_content' : 'content_repositori_content_view'}>
@@ -130,7 +135,7 @@ const Search = (props) => {
           );
         })}
 
-        {tr && store.testStore.search.length === 0 && (
+        {tr && testStore.search.length === 0 && (
           <div className="notFound">
             <h1 className="notFound_h">NO RESULTS FOUND</h1>
             <p className="notFound_p">select other parameters and try again</p>

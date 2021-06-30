@@ -2,16 +2,17 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 const MyList = (props) => {
-  const store = props;
+  const { testStore } = props;
+  const { dispatch } = props;
 
   const [view, setView] = useState(true);
   const [test, setTest] = useState(false);
 
   const addToList = (key) => {
     const object = key;
-    for (let i = 0; i < store.testStore.list.length; i += 1) {
-      if (store.testStore.list[i].id === key.id) {
-        store.dispatch({
+    for (let i = 0; i < testStore.list.length; i += 1) {
+      if (testStore.list[i].id === key.id) {
+        dispatch({
           type: 'DEL_REP',
           payload: i,
         });
@@ -19,12 +20,22 @@ const MyList = (props) => {
         return 0;
       }
     }
-    store.dispatch({
+    dispatch({
       type: 'ADD_REP',
       payload: object,
     });
     setTest(!test);
     return 0;
+  };
+
+  const checkList = (key) => {
+    let classButton = 'content_repositori_content_checkbox_view';
+    for (let i = 0; i < testStore.list.length; i += 1) {
+      if (Number(testStore.list[i].id) === Number(key.id)) {
+        classButton = 'content_repositori_content_checkbox_view_remove';
+      }
+    }
+    return classButton;
   };
 
   return (
@@ -36,13 +47,8 @@ const MyList = (props) => {
       </div>
 
       <div className="content">
-        {store.testStore.list.map((key) => {
-          let classButton = 'content_repositori_content_checkbox_view';
-          for (let i = 0; i < store.testStore.list.length; i += 1) {
-            if (Number(store.testStore.list[i].id) === Number(key.id)) {
-              classButton = 'content_repositori_content_checkbox_view_remove';
-            }
-          }
+        {testStore.list.map((key) => {
+          const classButton = checkList(key);
           return (
             <div className={view ? 'content_repositori' : 'content_repositori_view'}>
               <div className={view ? 'content_repositori_content' : 'content_repositori_content_view'}>
